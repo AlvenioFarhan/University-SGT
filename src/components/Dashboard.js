@@ -10,7 +10,7 @@ const Dashboard = () => {
   const [filteredData, setFilteredData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchName, setSearchName] = useState("");
-  const [searchCountry, setSearchCountry] = useState("");
+  const [searchCountry, setSearchCountry] = useState("indonesia");
 
   useEffect(() => {
     fetch(
@@ -34,7 +34,6 @@ const Dashboard = () => {
   };
 
   const handleLogout = () => {
-    // Hapus sesi login di sini jika diperlukan
     router.push("/");
   };
 
@@ -43,21 +42,24 @@ const Dashboard = () => {
       title: "Name",
       dataIndex: "name",
       key: "name",
+      sorter: (a, b) => a.name.localeCompare(b.name),
     },
     {
       title: "Country",
       dataIndex: "country",
       key: "country",
+      sorter: (a, b) => a.country.localeCompare(b.country),
     },
     {
       title: "Website",
       dataIndex: "web_pages",
       key: "web_pages",
-      render: (text) => (
-        <a href={text} target="_blank" rel="noopener noreferrer">
-          {text}
+      render: (webPages) => (
+        <a href={webPages[0]} target="_blank" rel="noopener noreferrer">
+          {webPages[0]}
         </a>
       ),
+      sorter: (a, b) => a.web_pages[0].localeCompare(b.web_pages[0]),
     },
   ];
 
