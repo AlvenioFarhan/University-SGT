@@ -10,7 +10,7 @@ const Dashboard = () => {
   const [filteredData, setFilteredData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchName, setSearchName] = useState("");
-  const [searchCountry, setSearchCountry] = useState("indonesia");
+  const [searchCountry, setSearchCountry] = useState("");
 
   useEffect(() => {
     fetch(
